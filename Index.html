@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城沼総合運動公園 オリエンテーリング大会 特設案内サイト</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f4f7f4',
+                            100: '#e3ebe3',
+                            500: '#2d6a4f',
+                            600: '#1b4332',
+                            700: '#081c15',
+                            accent: '#d97706',
+                            accentHover: '#b45309'
+                        },
+                        warmbg: '#faf8f5',
+                        cardbg: '#ffffff'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-warmbg text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-emerald-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+            <div class="flex items-center space-x-2">
+                <span class="inline-block w-4 h-4 rounded-full bg-brand-500"></span>
+                <span class="font-bold text-lg text-brand-600 tracking-tight">城沼オリエンテーリング2026</span>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+                <a href="#overview" class="hover:text-brand-500 transition-colors">大会概要</a>
+                <a href="#classes" class="hover:text-brand-500 transition-colors">クラス・参加費</a>
+                <a href="#calculator" class="hover:text-brand-500 transition-colors">クラス診断・計算</a>
+                <a href="#venue" class="hover:text-brand-500 transition-colors">会場・アクセス</a>
+                <a href="#checklist" class="hover:text-brand-500 transition-colors">初心者ガイド</a>
+                <a href="#contact" class="hover:text-brand-500 transition-colors">申込・要項</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <a href="城沼総合運動公園大会要項.pdf" download="城沼総合運動公園大会要項.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1 border border-brand-500 text-brand-600 hover:bg-brand-50 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors">
+                    📄 大会要項(PDF)
+                </a>
+                <a href="#contact" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow transition-colors">
+                    申込み方法へ
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-b from-brand-50 to-warmbg py-12 md:py-16 border-b border-emerald-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="inline-flex items-center gap-2 bg-emerald-100 text-brand-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                    初心者から経験者まで大歓迎！
+                </div>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                    城沼総合運動公園<br class="hidden sm:inline"> オリエンテーリング大会
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+                    〜 秋・冬の公園を駆け巡るスプリント競技 〜<br>
+                    危険性の少ない公園で、地図とコンパスを使ったポイント巡りに挑戦しよう！
+                </p>
+
+                <!-- Key Info Highlights Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
+                    <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-sm">
+                        <div class="text-xs text-slate-500 font-medium">開催日時</div>
+                        <div class="text-base sm:text-lg font-bold text-brand-600 mt-1">2026年12月6日(日)</div>
+                        <div class="text-xs text-slate-400">受付 9:00〜10:00 / 雨天決行</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-sm">
+                        <div class="text-xs text-slate-500 font-medium">会場</div>
+                        <div class="text-base sm:text-lg font-bold text-slate-800 mt-1">城沼総合運動公園</div>
+                        <div class="text-xs text-slate-500 font-medium">陸上競技場 (ダノンスポーツパーク)</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-sm">
+                        <div class="text-xs text-slate-500 font-medium">申込締切</div>
+                        <div class="text-base sm:text-lg font-bold text-brand-accent mt-1">11月15日(日)まで</div>
+                        <div class="text-xs text-slate-400">Japan-o-entry / メール</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-sm">
+                        <div class="text-xs text-slate-500 font-medium">主催</div>
+                        <div class="text-base sm:text-lg font-bold text-slate-800 mt-1">群馬県OL協会</div>
+                        <div class="text-xs text-slate-400">初心者競技説明あり</div>
+                    </div>
+                </div>
+
+                <!-- PDF Download Banner & Countdown -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
+                    <!-- PDF Download Button -->
+                    <a href="城沼総合運動公園大会要項.pdf" download="城沼総合運動公園大会要項.pdf" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-xl shadow transition">
+                        <span>📄</span> 大会要項 (PDF) をダウンロード
+                    </a>
+                    <!-- Countdown Timer -->
+                    <div class="w-full sm:w-auto bg-white border border-slate-200 rounded-xl px-6 py-3 shadow-sm text-center">
+                        <div class="text-xs text-slate-500 font-semibold mb-0.5">大会当日までの残り</div>
+                        <div id="countdown" class="text-lg md:text-xl font-mono font-bold text-brand-500">
+                            計算中...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="py-12 md:py-16">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">🏃 オリエンテーリング・スプリント競技とは？</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        スプリント競技は、<strong>約10〜20分で走り切る短距離のポイントオリエンテーリング</strong>です。
+                        地図とコンパスを使い、決められた順番でチェックポイント（コントロール）を回り、その速さを競います。
+                    </p>
+                    <p class="text-slate-600 leading-relaxed mt-3">
+                        本大会は危険性の少ない公園（館林市 城沼総合運動公園）で開催されるため、初めての方やお子様連れのファミリーでも数十分程度で走って（歩いて）ゴールできます！スタート前に初心者・初級者のための競技説明も行います。
+                    </p>
+                </div>
+
+                <!-- Specs & Visualization Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="font-bold text-slate-800 text-lg mb-3 flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-brand-500"></span>
+                                地図・競技仕様
+                            </h3>
+                            <ul class="space-y-3 text-sm text-slate-600">
+                                <li class="flex justify-between border-b pb-2">
+                                    <span class="font-semibold text-slate-700">使用地図</span>
+                                    <span>縮尺 1/4,000 / 等高線間隔 2m</span>
+                                </li>
+                                <li class="flex justify-between border-b pb-2">
+                                    <span class="font-semibold text-slate-700">通行可能度</span>
+                                    <span>4段階評価表示</span>
+                                </li>
+                                <li class="flex justify-between border-b pb-2">
+                                    <span class="font-semibold text-slate-700">通過証明</span>
+                                    <span>電子パンチ (SI) 使用 (マイカード可)</span>
+                                </li>
+                                <li class="flex justify-between border-b pb-2">
+                                    <span class="font-semibold text-slate-700">レンタル品</span>
+                                    <span>コンパス・SIカード当日貸出有</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="font-semibold text-slate-700">表彰</span>
+                                    <span>グループクラス 3位まで（郵送表彰）</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Chart Container -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="mb-4">
+                            <h3 class="font-bold text-slate-800 text-lg">クラス別 難易度・コース距離イメージ</h3>
+                            <p class="text-xs text-slate-500">各クラスの想定競技仕様と難易度の目安です。ご自身の経験に合わせて選べます。</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="classSpecChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Classes & Fees Section -->
+        <section id="classes" class="py-12 md:py-16 bg-white border-y border-slate-200">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">🚩 クラス設定 & 参加費</h2>
+                    <p class="text-slate-600">個人でのご参加（3クラス）と、グループで巡るグループ参加（2クラス）が選べます。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Personal Classes Card -->
+                    <div class="bg-warmbg p-6 rounded-2xl border border-emerald-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-brand-600">【個人クラス】（3クラス）</h3>
+                            <span class="bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">参加費 2,000円/人</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-slate-800 text-lg">L クラス</span>
+                                    <span class="text-xs bg-red-100 text-red-700 font-semibold px-2 py-0.5 rounded">経験者</span>
+                                </div>
+                                <p class="text-sm text-slate-600 mt-1">オリエンテーリング経験者向け。ナビゲーション速度とルート選定を競いたい方に最適です。</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-slate-800 text-lg">M クラス</span>
+                                    <span class="text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-0.5 rounded">中級者</span>
+                                </div>
+                                <p class="text-sm text-slate-600 mt-1">何度か体験したことがあり、少し走り甲斐のあるコースに挑戦したい方向け。</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-slate-800 text-lg">N クラス</span>
+                                    <span class="text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded">初級者・初心者</span>
+                                </div>
+                                <p class="text-sm text-slate-600 mt-1">初めての方や自信のない方向け。メール申込み（当日支払い）にも対応しています。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group Classes Card -->
+                    <div class="bg-warmbg p-6 rounded-2xl border border-emerald-100">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-brand-600">【グループクラス】（2クラス）</h3>
+                            <span class="bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">参加費 2,000円/1グループ</span>
+                        </div>
+                        <div class="space-y-4 mb-4">
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-slate-800 text-lg">GL クラス</span>
+                                    <span class="text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-0.5 rounded">経験者組</span>
+                                </div>
+                                <p class="text-sm text-slate-600 mt-1">経験者を含むグループ向け。仲間同士で地図を読み合いながらゴールを目指します。</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-bold text-slate-800 text-lg">GN クラス</span>
+                                    <span class="text-xs bg-green-100 text-green-700 font-semibold px-2 py-0.5 rounded">初級・初心者組</span>
+                                </div>
+                                <p class="text-sm text-slate-600 mt-1">家族や友人と一緒に！初心者グループ向けの安心コース。3位まで郵送表彰があります。</p>
+                            </div>
+                        </div>
+                        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-xs text-brand-700">
+                            💡 <strong>グループ人数の制限はありません！</strong> ただし、人数が多い場合はより楽しむため複数グループに分かれてのお申し込みをお勧めします。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Class Finder & Cost Calculator Section -->
+        <section id="calculator" class="py-12 md:py-16">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-2">🎯 クラス診断 ＆ 参加費計算ツール</h2>
+                    <p class="text-slate-600">簡単な質問に答えておすすめのクラスを診断し、全体の参加費をシミュレーションしましょう。</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Class Diagnostic Quiz -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+                                <span>🧭</span> あなたにぴったりのクラス診断
+                            </h3>
+
+                            <div id="quizStep1" class="space-y-3">
+                                <label class="block text-sm font-semibold text-slate-700">Q1. 参加形態を選んでください</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button onclick="setQuizType('individual')" id="btnInd" class="p-3 text-left border rounded-xl border-slate-300 hover:border-brand-500 focus:ring-2 focus:ring-brand-500 transition">
+                                        <div class="font-bold text-sm">個人で走る</div>
+                                        <div class="text-xs text-slate-500">1人で挑戦</div>
+                                    </button>
+                                    <button onclick="setQuizType('group')" id="btnGrp" class="p-3 text-left border rounded-xl border-slate-300 hover:border-brand-500 focus:ring-2 focus:ring-brand-500 transition">
+                                        <div class="font-bold text-sm">グループで参加</div>
+                                        <div class="text-xs text-slate-500">家族・友人と楽しく</div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="quizStep2" class="space-y-3 mt-6">
+                                <label class="block text-sm font-semibold text-slate-700">Q2. オリエンテーリングの経験は？</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <button onclick="setQuizExp('beginner')" id="btnExp1" class="p-2 text-center border rounded-xl border-slate-300 text-xs hover:border-brand-500">初めて / 初級</button>
+                                    <button onclick="setQuizExp('intermediate')" id="btnExp2" class="p-2 text-center border rounded-xl border-slate-300 text-xs hover:border-brand-500">数回あり</button>
+                                    <button onclick="setQuizExp('expert')" id="btnExp3" class="p-2 text-center border rounded-xl border-slate-300 text-xs hover:border-brand-500">経験豊富</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="quizResult" class="mt-6 p-4 rounded-xl bg-brand-50 border border-brand-100 hidden">
+                            <div class="text-xs text-brand-600 font-semibold uppercase">診断おすすめ結果</div>
+                            <div id="quizResultTitle" class="text-xl font-bold text-brand-700 mt-1"></div>
+                            <div id="quizResultDesc" class="text-xs text-slate-600 mt-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- Fee Calculator -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-lg mb-4 flex items-center gap-2">
+                                <span>🧮</span> 参加費・レンタル計算
+                            </h3>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="flex justify-between text-sm font-semibold text-slate-700 mb-1">
+                                        <span>個人クラス参加人数 (各2,000円)</span>
+                                        <span id="valIndCount" class="text-brand-600 font-bold">0 名</span>
+                                    </label>
+                                    <input type="range" id="inputInd" min="0" max="10" value="0" oninput="calculateFee()" class="w-full accent-brand-500">
+                                </div>
+
+                                <div>
+                                    <label class="flex justify-between text-sm font-semibold text-slate-700 mb-1">
+                                        <span>グループクラス数 (各2,000円/組)</span>
+                                        <span id="valGrpCount" class="text-brand-600 font-bold">1 組</span>
+                                    </label>
+                                    <input type="range" id="inputGrp" min="0" max="5" value="1" oninput="calculateFee()" class="w-full accent-brand-500">
+                                </div>
+
+                                <div class="pt-2 border-t">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" id="checkRental" onchange="calculateFee()" class="w-4 h-4 text-brand-500 rounded border-slate-300" checked disabled>
+                                        <span class="text-sm text-slate-700">SIカード / コンパスの当日貸出あり（無料）</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-4 rounded-xl bg-slate-900 text-white flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-slate-400">合計見積もり費用</div>
+                                <div id="totalFeeDisplay" class="text-2xl font-bold text-amber-400">2,000 円</div>
+                            </div>
+                            <a href="#contact" class="text-xs bg-brand-500 hover:bg-brand-600 text-white px-3 py-2 rounded-lg font-semibold transition">申込へ進む →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Venue & Google Maps Section -->
+        <section id="venue" class="py-12 md:py-16 bg-white border-y border-slate-200">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">📍 アクセス・会場案内</h2>
+                    <p class="text-slate-600">
+                        会場は群馬県館林市の<strong>城沼総合運動公園（陸上競技場）[新名 ダノンスポーツパーク]</strong>です。
+                        Google Mapで拡大・縮小・経路検索が可能です。お車でも電車でもアクセスしやすい環境です。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Access List -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="bg-warmbg p-5 rounded-xl border border-slate-200">
+                            <h3 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                                <span>🚃</span> 電車でお越しの方
+                            </h3>
+                            <p class="text-sm text-slate-600">
+                                東武伊勢崎線<strong>「館林駅」</strong>より徒歩約20分。<br>
+                                <span class="text-xs text-slate-500">※駅から会場までの案内図は事前公開プログラムに掲載予定です。</span>
+                            </p>
+                        </div>
+
+                        <div class="bg-warmbg p-5 rounded-xl border border-slate-200">
+                            <h3 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                                <span>🚗</span> お車でお越しの方
+                            </h3>
+                            <p class="text-sm text-slate-600">
+                                公園駐車場をご利用いただけます（駐車場あり）。
+                            </p>
+                        </div>
+
+                        <!-- Direct Map Action Button -->
+                        <div class="bg-brand-50 border border-brand-200 p-4 rounded-xl flex flex-col items-center text-center">
+                            <div class="text-xs text-brand-700 font-semibold mb-2">スマートフォン・ナビで直接ルート検索</div>
+                            <a href="https://www.google.com/maps/search/?api=1&query=城沼総合運動公園+陸上競技場" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold py-2.5 px-4 rounded-lg shadow transition">
+                                <span>🗺️</span> Google Maps アプリで開く ↗
+                            </a>
+                        </div>
+
+                        <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs text-amber-900">
+                            ⚠️ <strong>注意事項：</strong> 公園内の立入禁止区域には絶対に入らないでください。
+                        </div>
+                    </div>
+
+                    <!-- Embedded Google Maps -->
+                    <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="font-bold text-slate-800">城沼総合運動公園 周辺マップ</h3>
+                                <p class="text-xs text-slate-500">Google Map（操作・ズーム・移動可能）</p>
+                            </div>
+                            <span class="text-xs bg-emerald-100 text-brand-700 font-bold px-2.5 py-1 rounded-full">Google MAP</span>
+                        </div>
+
+                        <!-- Location Selector Toggle Buttons -->
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <button onclick="changeMapTarget('stadium')" id="btnLocStadium" class="text-xs px-3 py-1.5 rounded-lg border border-brand-500 bg-brand-50 text-brand-700 font-bold">
+                                🏟️ 陸上競技場（本部・受付）
+                            </button>
+                            <button onclick="changeMapTarget('station')" id="btnLocStation" class="text-xs px-3 py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50">
+                                🚃 館林駅
+                            </button>
+                        </div>
+
+                        <!-- Google Maps Responsive Container -->
+                        <div class="relative w-full h-[360px] md:h-[400px] rounded-xl overflow-hidden border border-slate-200 shadow-inner">
+                            <iframe 
+                                id="googleMapIframe"
+                                src="https://maps.google.com/maps?q=城沼総合運動公園+陸上競技場&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+
+                        <div id="mapLocationDetail" class="mt-3 text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <strong>📍 現在表示：</strong> 館林市城沼総合運動公園 陸上競技場 [ダノンスポーツパーク]（受付場所）
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beginner Guide & Interactive Checklist Section -->
+        <section id="checklist" class="py-12 md:py-16">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">🔰 初心者ガイド & 当日準備チェックリスト</h2>
+                    <p class="text-slate-600">準備を整えて安心して当日を迎えましょう。持ち物をタップしてチェックできます。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Beginner Info Guide -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                        <h3 class="font-bold text-slate-800 text-lg border-b pb-2">💡 当日の流れとタイムスケジュール</h3>
+                        <ol class="space-y-3 text-sm text-slate-600 list-decimal list-inside">
+                            <li><strong class="text-slate-800">受付 (9:00〜10:00)</strong>：陸上競技場で受付を行います（当日参加検討中）。</li>
+                            <li><strong class="text-slate-800">初心者競技説明</strong>：スタート前に競技ルールや地図の見方、電子パンチ（SI）の使い方をレクチャーします。</li>
+                            <li><strong class="text-slate-800">順次スタート (10:30〜)</strong>：指定時間にスタート。決められたチェックポイントを順番に巡ります。</li>
+                            <li><strong class="text-slate-800">フィニッシュ</strong>：ゴール後、電子パンチのデータを読み取り記録を測定します。</li>
+                        </ol>
+
+                        <div class="bg-brand-50 p-4 rounded-xl text-xs text-brand-700 border border-brand-100">
+                            <strong>電子パンチ（SI）とコンパスについて：</strong><br>
+                            当日会場にて貸出を行います。マイカードをお持ちの方は事前申請により使用可能です。
+                        </div>
+                    </div>
+
+                    <!-- Interactive Checklist -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-slate-800 text-lg">✅ 当日の持ち物・注意事項チェック</h3>
+                            <span id="checklistProgressText" class="text-xs font-bold text-brand-500">0 / 6 完了</span>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-slate-100 rounded-full h-2.5 mb-6 overflow-hidden">
+                            <div id="checklistProgressBar" class="bg-brand-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+
+                        <div class="space-y-3 text-sm" id="checklistGroup">
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" onchange="updateChecklist()" class="w-5 h-5 text-brand-500 rounded border-slate-300 focus:ring-brand-500">
+                                <div>
+                                    <span class="font-semibold text-slate-800">健康保険証（必携）</span>
+                                    <p class="text-xs text-slate-500">万一の怪我に備え、必ず持参してください。</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" onchange="updateChecklist()" class="w-5 h-5 text-brand-500 rounded border-slate-300 focus:ring-brand-500">
+                                <div>
+                                    <span class="font-semibold text-slate-800">動きやすい服装・運動靴</span>
+                                    <p class="text-xs text-slate-500">公園内を快適に走れる（歩ける）服装でお越しください。</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" onchange="updateChecklist()" class="w-5 h-5 text-brand-500 rounded border-slate-300 focus:ring-brand-500">
+                                <div>
+                                    <span class="font-semibold text-slate-800">コンパス / SIカード（マイカード所持者）</span>
+                                    <p class="text-xs text-slate-500">お持ちでない方は当日会場で貸出があります。</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" onchange="updateChecklist()" class="w-5 h-5 text-brand-500 rounded border-slate-300 focus:ring-brand-500">
+                                <div>
+                                    <span class="font-semibold text-slate-800">参加費（メール申込・当日支払の方）</span>
+                                    <p class="text-xs text-slate-500">お釣りが出ないよう正確な金額のご協力をお願いします。</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" onchange="updateChecklist()" class="w-5 h-5 text-brand-500 rounded border-slate-300 focus:ring-brand-500">
+                                <div>
+                                    <span class="font-semibold text-slate-800">安全・立入禁止区域の遵守</span>
+                                    <p class="text-xs text-slate-500">公園内の立入禁止区域には絶対に入らないでください。</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                                <input type="checkbox" onchange="updateChecklist()" class="w-5 h-5 text-brand-500 rounded border-slate-300 focus:ring-brand-500">
+                                <div>
+                                    <span class="font-semibold text-slate-800">注意事項の確認・同意</span>
+                                    <p class="text-xs text-slate-500">事故等は自己責任原則、広報目的の写真使用へ同意。</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document & PDF Download Card Section -->
+        <section class="py-8 bg-brand-50 border-t border-brand-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white p-6 rounded-2xl border border-brand-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl shrink-0">
+                            📄
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900">城沼総合運動公園オリエンテーリング大会 要項（PDF）</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">大会の詳細ルール、注意事項、アクセス案内などが記載された公式PDF資料です。</p>
+                        </div>
+                    </div>
+                    <a href="城沼総合運動公園大会要項.pdf" download="城沼総合運動公園大会要項.pdf" target="_blank" class="w-full md:w-auto text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-6 rounded-xl shadow transition whitespace-nowrap">
+                        大会要項 (PDF) をダウンロード ⬇
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration & Contact Section -->
+        <section id="contact" class="py-12 md:py-16 bg-white border-t border-slate-200">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-500 font-bold text-xs uppercase tracking-wider">申込み締切：2026年11月15日</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-1 mb-3">📝 お申し込み方法 & お問い合わせ</h2>
+                    <p class="text-slate-600">できるだけWEB申込み（Japan-o-entry）をご利用ください。初級Nクラス・グループクラスのみメール申込みも可能です。</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                    <!-- Apply Method 1: Web -->
+                    <div class="bg-warmbg p-6 rounded-2xl border border-emerald-200 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">推奨</div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">1. WEB申込み (Japan-o-entry)</h3>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                全クラス対象のエントリーシステムです。スムーズな受付のため、できるだけJapan-o-entryをご利用ください。
+                            </p>
+                        </div>
+                        <a href="https://www.japan-o-entry.com" target="_blank" rel="noopener noreferrer" class="block text-center bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 px-6 rounded-xl shadow transition">
+                            Japan-o-entry で申し込む ↗
+                        </a>
+                    </div>
+
+                    <!-- Apply Method 2: Email -->
+                    <div class="bg-warmbg p-6 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block bg-slate-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">Nクラス・グループ専用</div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">2. メール申込み</h3>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                <strong>Nクラスおよびグループクラスのみ対象</strong>。参加費は<strong>当日支払</strong>となります。<br>
+                                下記アドレス宛にプログラムに記載された事項を明記の上お送りください。
+                            </p>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 text-center">
+                            <div class="text-xs text-slate-500">メール申込み / お問合せ先</div>
+                            <div class="font-mono font-bold text-slate-800 select-all">pypy01200@yahoo.co.jp</div>
+                            <div class="text-[10px] text-slate-400 mt-0.5">（担当：阿部倉）</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact & FAQ Grid -->
+                <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                📞 お問い合わせ窓口
+                            </h3>
+                            <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+                                大会に関する詳しい内容は後日公開の<strong>プログラム</strong>にて説明いたします。参加にご不安な方はプログラム掲載後に参加申込を行ってください。
+                            </p>
+                            <div class="space-y-3 text-sm">
+                                <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
+                                    <div class="text-xs text-slate-400">お電話でのお問い合わせ (19:00〜21:00)</div>
+                                    <div class="text-lg font-bold text-amber-400 font-mono">TEL: 090-9642-0782</div>
+                                    <div class="text-xs text-slate-400">担当：金谷</div>
+                                </div>
+                                <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
+                                    <div class="text-xs text-slate-400">メールでのお問い合わせ</div>
+                                    <div class="text-base font-bold text-slate-200 font-mono">pypy01200@yahoo.co.jp</div>
+                                    <div class="text-xs text-slate-400">担当：阿部倉</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Interactive Accordion -->
+                        <div>
+                            <h4 class="font-bold text-slate-200 mb-3 text-sm uppercase tracking-wider">よくある質問 (FAQ)</h4>
+                            <div class="space-y-3">
+                                <details class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700">
+                                    <summary class="font-semibold text-slate-200 cursor-pointer">雨天の場合は開催されますか？</summary>
+                                    <p class="text-xs text-slate-400 mt-2">雨天決行ですが、荒天の場合は中止となります。</p>
+                                </details>
+                                <details class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700">
+                                    <summary class="font-semibold text-slate-200 cursor-pointer">当日参加は可能ですか？</summary>
+                                    <p class="text-xs text-slate-400 mt-2">受付時間内の当日参加は現在検討中です。確実に参加される場合は11月15日までの事前申込みをお勧めします。</p>
+                                </details>
+                                <details class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700">
+                                    <summary class="font-semibold text-slate-200 cursor-pointer">グループの人数制限はありますか？</summary>
+                                    <p class="text-xs text-slate-400 mt-2">人数制限はありません。ただし人数が多い場合はグループを分けることをお勧めします。</p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-8 text-xs text-center border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>主催：群馬県オリエンテーリング協会 | 会場：館林市 城沼総合運動公園 (陸上競技場) [ダノンスポーツパーク]</p>
+            <p class="mt-2 text-slate-600">© 2026 Gunma Orienteering Association. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Application Logic Script -->
+    <script>
+        // 1. Countdown Timer Logic
+        function updateCountdown() {
+            const eventDate = new Date('2026-12-06T09:00:00+09:00');
+            const now = new Date();
+            const diff = eventDate - now;
+
+            const el = document.getElementById('countdown');
+            if (!el) return;
+
+            if (diff <= 0) {
+                el.innerText = '本日大会開催日です！';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / 1000 / 60) % 60);
+
+            el.innerText = `${days}日 ${hours}時間 ${mins}分`;
+        }
+        setInterval(updateCountdown, 60000);
+        updateCountdown();
+
+        // 2. Chart.js Implementation for Class Specifications
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('classSpecChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['L (経験者)', 'M (中級者)', 'N (初級者)', 'GL (経験者組)', 'GN (初級組)'],
+                    datasets: [
+                        {
+                            label: '想定距離 (km)',
+                            data: [3.2, 2.4, 1.5, 2.4, 1.5],
+                            backgroundColor: '#2d6a4f',
+                            borderRadius: 6,
+                            borderSkipped: false,
+                        },
+                        {
+                            label: 'ナビ難易度 (5段階)',
+                            data: [5, 3.5, 1.5, 3.5, 1.5],
+                            backgroundColor: '#d97706',
+                            borderRadius: 6,
+                            borderSkipped: false,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: { size: 12 },
+                                boxWidth: 14
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) label += ': ';
+                                    label += context.raw;
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 6,
+                            ticks: {
+                                font: { size: 11 }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: { size: 11 }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        // 3. Diagnostic Quiz Logic
+        let quizState = { type: null, exp: null };
+
+        function setQuizType(type) {
+            quizState.type = type;
+            document.getElementById('btnInd').className = type === 'individual' ? 
+                'p-3 text-left border rounded-xl border-brand-500 bg-brand-50 ring-2 ring-brand-500 transition' : 
+                'p-3 text-left border rounded-xl border-slate-300 hover:border-brand-500 transition';
+            document.getElementById('btnGrp').className = type === 'group' ? 
+                'p-3 text-left border rounded-xl border-brand-500 bg-brand-50 ring-2 ring-brand-500 transition' : 
+                'p-3 text-left border rounded-xl border-slate-300 hover:border-brand-500 transition';
+            evaluateQuiz();
+        }
+
+        function setQuizExp(exp) {
+            quizState.exp = exp;
+            ['btnExp1', 'btnExp2', 'btnExp3'].forEach(id => {
+                document.getElementById(id).className = 'p-2 text-center border rounded-xl border-slate-300 text-xs hover:border-brand-500';
+            });
+            if (exp === 'beginner') document.getElementById('btnExp1').className = 'p-2 text-center border rounded-xl border-brand-500 bg-brand-50 font-bold text-xs';
+            if (exp === 'intermediate') document.getElementById('btnExp2').className = 'p-2 text-center border rounded-xl border-brand-500 bg-brand-50 font-bold text-xs';
+            if (exp === 'expert') document.getElementById('btnExp3').className = 'p-2 text-center border rounded-xl border-brand-500 bg-brand-50 font-bold text-xs';
+            evaluateQuiz();
+        }
+
+        function evaluateQuiz() {
+            if (!quizState.type || !quizState.exp) return;
+
+            const resDiv = document.getElementById('quizResult');
+            const resTitle = document.getElementById('quizResultTitle');
+            const resDesc = document.getElementById('quizResultDesc');
+            resDiv.classList.remove('hidden');
+
+            if (quizState.type === 'individual') {
+                if (quizState.exp === 'beginner') {
+                    resTitle.innerText = 'N クラス（個人・初級者）';
+                    resDesc.innerText = '初めての方にぴったり！わかりやすいルート設定で安心して走れます。';
+                } else if (quizState.exp === 'intermediate') {
+                    resTitle.innerText = 'M クラス（個人・中級者）';
+                    resDesc.innerText = 'オリエンテーリングの醍醐味であるルート選択を楽しめるコースです。';
+                } else {
+                    resTitle.innerText = 'L クラス（個人・経験者）';
+                    resDesc.innerText = '最高難易度のコース！スピーディーな判断と正確な読図能力が試されます。';
+                }
+            } else {
+                if (quizState.exp === 'expert') {
+                    resTitle.innerText = 'GL クラス（グループ・経験者組）';
+                    resDesc.innerText = '経験者が含まれるグループ向け。仲間と一緒に戦略を立てて挑戦しましょう。';
+                } else {
+                    resTitle.innerText = 'GN クラス（グループ・初級・初心者組）';
+                    resDesc.innerText = 'ファミリーや初心者グループに最適！上位3位まで郵送表彰のチャンスもあります。';
+                }
+            }
+        }
+
+        // 4. Fee Calculator Logic
+        function calculateFee() {
+            const indCount = parseInt(document.getElementById('inputInd').value);
+            const grpCount = parseInt(document.getElementById('inputGrp').value);
+
+            document.getElementById('valIndCount').innerText = `${indCount} 名`;
+            document.getElementById('valGrpCount').innerText = `${grpCount} 組`;
+
+            const total = (indCount * 2000) + (grpCount * 2000);
+            document.getElementById('totalFeeDisplay').innerText = `${total.toLocaleString()} 円`;
+        }
+
+        // 5. Checklist Logic
+        function updateChecklist() {
+            const checkboxes = document.querySelectorAll('#checklistGroup input[type="checkbox"]');
+            let checkedCount = 0;
+            checkboxes.forEach(cb => { if (cb.checked) checkedCount++; });
+
+            const percent = Math.round((checkedCount / checkboxes.length) * 100);
+            document.getElementById('checklistProgressBar').style.width = `${percent}%`;
+            document.getElementById('checklistProgressText').innerText = `${checkedCount} / ${checkboxes.length} 完了`;
+        }
+
+        // 6. Google Map Target Switcher
+        function changeMapTarget(target) {
+            const iframe = document.getElementById('googleMapIframe');
+            const detail = document.getElementById('mapLocationDetail');
+            
+            const btnStadium = document.getElementById('btnLocStadium');
+            const btnStation = document.getElementById('btnLocStation');
+
+            const activeClass = 'text-xs px-3 py-1.5 rounded-lg border border-brand-500 bg-brand-50 text-brand-700 font-bold';
+            const inactiveClass = 'text-xs px-3 py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50';
+
+            btnStadium.className = inactiveClass;
+            btnStation.className = inactiveClass;
+
+            if (target === 'stadium') {
+                iframe.src = 'https://maps.google.com/maps?q=城沼総合運動公園+陸上競技場&t=&z=16&ie=UTF8&iwloc=&output=embed';
+                detail.innerHTML = '<strong>📍 現在表示：</strong> 館林市城沼総合運動公園 陸上競技場 [ダノンスポーツパーク]（受付・本部設置場所）';
+                btnStadium.className = activeClass;
+            } else if (target === 'station') {
+                iframe.src = 'https://maps.google.com/maps?q=館林駅&t=&z=15&ie=UTF8&iwloc=&output=embed';
+                detail.innerHTML = '<strong>📍 現在表示：</strong> 東武伊勢崎線 館林駅（最寄り駅：徒歩約20分）';
+                btnStation.className = activeClass;
+            }
+        }
+    </script>
+</body>
+</html>
