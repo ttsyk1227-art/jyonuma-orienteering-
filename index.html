@@ -61,11 +61,16 @@
                 <a href="#calculator" class="hover:text-brand-500 transition-colors">クラス診断・計算</a>
                 <a href="#venue" class="hover:text-brand-500 transition-colors">会場・アクセス</a>
                 <a href="#checklist" class="hover:text-brand-500 transition-colors">初心者ガイド</a>
-                <a href="#contact" class="hover:text-brand-500 transition-colors">申込・問合せ</a>
+                <a href="#contact" class="hover:text-brand-500 transition-colors">申込・要項</a>
             </nav>
-            <a href="#contact" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow transition-colors">
-                申込み方法へ
-            </a>
+            <div class="flex items-center gap-2">
+                <a href="城沼総合運動公園大会要項.pdf" download="城沼総合運動公園大会要項.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1 border border-brand-500 text-brand-600 hover:bg-brand-50 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors">
+                    📄 大会要項(PDF)
+                </a>
+                <a href="#contact" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow transition-colors">
+                    申込み方法へ
+                </a>
+            </div>
         </div>
     </header>
 
@@ -108,11 +113,18 @@
                     </div>
                 </div>
 
-                <!-- Countdown Timer -->
-                <div class="inline-block bg-white border border-slate-200 rounded-xl px-6 py-3 shadow-sm">
-                    <div class="text-xs text-slate-500 font-semibold mb-1">大会当日（2026/12/06）までの残り時間</div>
-                    <div id="countdown" class="text-xl md:text-2xl font-mono font-bold text-brand-500">
-                        計算中...
+                <!-- PDF Download Banner & Countdown -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
+                    <!-- PDF Download Button -->
+                    <a href="城沼総合運動公園大会要項.pdf" download="城沼総合運動公園大会要項.pdf" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-xl shadow transition">
+                        <span>📄</span> 大会要項 (PDF) をダウンロード
+                    </a>
+                    <!-- Countdown Timer -->
+                    <div class="w-full sm:w-auto bg-white border border-slate-200 rounded-xl px-6 py-3 shadow-sm text-center">
+                        <div class="text-xs text-slate-500 font-semibold mb-0.5">大会当日までの残り</div>
+                        <div id="countdown" class="text-lg md:text-xl font-mono font-bold text-brand-500">
+                            計算中...
+                        </div>
                     </div>
                 </div>
             </div>
@@ -402,9 +414,6 @@
                             <button onclick="changeMapTarget('stadium')" id="btnLocStadium" class="text-xs px-3 py-1.5 rounded-lg border border-brand-500 bg-brand-50 text-brand-700 font-bold">
                                 🏟️ 陸上競技場（本部・受付）
                             </button>
-                            <button onclick="changeMapTarget('park')" id="btnLocPark" class="text-xs px-3 py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50">
-                                🌳 公園全体
-                            </button>
                             <button onclick="changeMapTarget('station')" id="btnLocStation" class="text-xs px-3 py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50">
                                 🚃 館林駅
                             </button>
@@ -523,6 +532,26 @@
             </div>
         </section>
 
+        <!-- Document & PDF Download Card Section -->
+        <section class="py-8 bg-brand-50 border-t border-brand-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white p-6 rounded-2xl border border-brand-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl shrink-0">
+                            📄
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900">城沼総合運動公園オリエンテーリング大会 要項（PDF）</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">大会の詳細ルール、注意事項、アクセス案内などが記載された公式PDF資料です。</p>
+                        </div>
+                    </div>
+                    <a href="城沼総合運動公園大会要項.pdf" download="城沼総合運動公園大会要項.pdf" target="_blank" class="w-full md:w-auto text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-6 rounded-xl shadow transition whitespace-nowrap">
+                        大会要項 (PDF) をダウンロード ⬇
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Registration & Contact Section -->
         <section id="contact" class="py-12 md:py-16 bg-white border-t border-slate-200">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -559,7 +588,7 @@
                         </div>
                         <div class="bg-white p-3 rounded-xl border border-slate-200 text-center">
                             <div class="text-xs text-slate-500">メール申込み / お問合せ先</div>
-                            <div class="font-mono font-bold text-slate-800 select-all">pypy01200（アット）yahoo.co.jp</div>
+                            <div class="font-mono font-bold text-slate-800 select-all">pypy01200@yahoo.co.jp</div>
                             <div class="text-[10px] text-slate-400 mt-0.5">（担当：阿部倉）</div>
                         </div>
                     </div>
@@ -583,7 +612,7 @@
                                 </div>
                                 <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
                                     <div class="text-xs text-slate-400">メールでのお問い合わせ</div>
-                                    <div class="text-base font-bold text-slate-200 font-mono">pypy01200（あっと）yahoo.co.jp</div>
+                                    <div class="text-base font-bold text-slate-200 font-mono">pypy01200@yahoo.co.jp</div>
                                     <div class="text-xs text-slate-400">担当：阿部倉</div>
                                 </div>
                             </div>
@@ -794,24 +823,18 @@
             const detail = document.getElementById('mapLocationDetail');
             
             const btnStadium = document.getElementById('btnLocStadium');
-            const btnPark = document.getElementById('btnLocPark');
             const btnStation = document.getElementById('btnLocStation');
 
             const activeClass = 'text-xs px-3 py-1.5 rounded-lg border border-brand-500 bg-brand-50 text-brand-700 font-bold';
             const inactiveClass = 'text-xs px-3 py-1.5 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50';
 
             btnStadium.className = inactiveClass;
-            btnPark.className = inactiveClass;
             btnStation.className = inactiveClass;
 
             if (target === 'stadium') {
                 iframe.src = 'https://maps.google.com/maps?q=城沼総合運動公園+陸上競技場&t=&z=16&ie=UTF8&iwloc=&output=embed';
                 detail.innerHTML = '<strong>📍 現在表示：</strong> 館林市城沼総合運動公園 陸上競技場 [ダノンスポーツパーク]（受付・本部設置場所）';
                 btnStadium.className = activeClass;
-            } else if (target === 'park') {
-                iframe.src = 'https://maps.google.com/maps?q=城沼総合運動公園&t=&z=15&ie=UTF8&iwloc=&output=embed';
-                detail.innerHTML = '<strong>📍 現在表示：</strong> 城沼総合運動公園 全域マップ（広場・駐車場・湖畔エリア）';
-                btnPark.className = activeClass;
             } else if (target === 'station') {
                 iframe.src = 'https://maps.google.com/maps?q=館林駅&t=&z=15&ie=UTF8&iwloc=&output=embed';
                 detail.innerHTML = '<strong>📍 現在表示：</strong> 東武伊勢崎線 館林駅（最寄り駅：徒歩約20分）';
